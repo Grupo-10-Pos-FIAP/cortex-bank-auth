@@ -1,4 +1,3 @@
-// src/hooks/useLoginForm.ts
 import { useState, useCallback } from "react";
 import type { LoginFormData, LoginFormErrors, LoginFormStatus } from "../types";
 import { validateForm } from "../utils/validation";

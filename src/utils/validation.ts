@@ -18,7 +18,6 @@ export const validateEmail = (
     return { isValid: false, message: "Email inválido" };
   }
 
-  // Simulação de verificação de disponibilidade
   const isAvailable = !["teste@exemplo.com", "admin@exemplo.com"].includes(
     email
   );

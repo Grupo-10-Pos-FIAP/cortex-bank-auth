@@ -1,7 +1,8 @@
 import React from "react";
 import BgImage from "./assets/bg-home.svg";
-import Form from "./components/LoginForm";
+import LoginForm from "./components/LoginForm";
 import { Text } from "@grupo10-pos-fiap/design-system";
+import "./styles/global.css";
 
 const AuthPage: React.FC = () => {
   return (
@@ -22,7 +23,7 @@ const AuthPage: React.FC = () => {
               up
             </Text>
           </div>
-          <Form />
+          <LoginForm />
         </div>
       </div>
 

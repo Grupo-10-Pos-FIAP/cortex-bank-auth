@@ -1,4 +1,3 @@
-// src/components/LoginButton.tsx
 import React from "react";
 import { Button } from "@grupo10-pos-fiap/design-system";
 

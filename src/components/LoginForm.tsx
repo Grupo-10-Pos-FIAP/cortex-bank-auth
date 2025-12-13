@@ -10,23 +10,24 @@ const LoginForm: React.FC = () => {
   const { formData, errors, status, handleChange, handleBlur, handleSubmit } =
     useLoginForm();
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      const result = handleSubmit(e);
-
-      if (result.success) {
-        // await api.login(formData);
-        alert("Login realizado com sucesso!");
-      }
-    } catch (error) {
-      console.error("Erro no login:", error);
-      alert("Erro ao realizar login. Tente novamente.");
-    } finally {
-      setIsLoading(false);
-    }
+    Promise.resolve()
+      .then(() => handleSubmit(e))
+      .then((result: any) => {
+        if (result && result.success) {
+          alert("Login realizado com sucesso!");
+        }
+      })
+      .catch((error: any) => {
+        console.error("Erro no login:", error);
+        alert("Erro ao realizar login. Tente novamente.");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const getHelperText = (field: "email" | "password") => {
