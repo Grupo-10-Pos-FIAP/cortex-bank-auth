@@ -5,6 +5,7 @@ import LoginButton from "./LoginButton";
 import PasswordInput from "./PasswordInput";
 import SignUpButton from "./SignUpButton";
 import styles from "./LoginForm.module.css";
+import ForgotPassword from "./ForgotPassword";
 
 const LoginForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -58,6 +59,7 @@ const LoginForm: React.FC = () => {
           status={status.password}
           helperText={getHelperText("password")}
         />
+        <ForgotPassword />
       </div>
 
       <div className={styles.buttonsContainer}>
@@ -66,7 +68,11 @@ const LoginForm: React.FC = () => {
           isLoading={isLoading}
           disabled={!formData.email || !formData.password}
         />
-        <SignUpButton onClick={() => {}} />
+        <SignUpButton
+          onClick={() => {
+            alert("Página em construção!");
+          }}
+        />
       </div>
     </form>
   );
