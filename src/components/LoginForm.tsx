@@ -4,6 +4,7 @@ import EmailInput from "./EmailInput";
 import LoginButton from "./LoginButton";
 import PasswordInput from "./PasswordInput";
 import SignUpButton from "./SignUpButton";
+import styles from "./LoginForm.module.css";
 
 const LoginForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,32 +39,35 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="flex flex-col max-w-md mx-auto p-6 gap-2 space-y-4"
-    >
-      <EmailInput
-        value={formData.email}
-        onChange={handleChange("email")}
-        onBlur={handleBlur("email")}
-        status={status.email}
-        helperText={getHelperText("email")}
-      />
+    <form onSubmit={onSubmit} className={styles.container}>
+      <div className={styles.emailInput}>
+        <EmailInput
+          value={formData.email}
+          onChange={handleChange("email")}
+          onBlur={handleBlur("email")}
+          status={status.email}
+          helperText={getHelperText("email")}
+        />
+      </div>
 
-      <PasswordInput
-        value={formData.password}
-        onChange={handleChange("password")}
-        onBlur={handleBlur("password")}
-        status={status.password}
-        helperText={getHelperText("password")}
-      />
+      <div className={styles.passwordInput}>
+        <PasswordInput
+          value={formData.password}
+          onChange={handleChange("password")}
+          onBlur={handleBlur("password")}
+          status={status.password}
+          helperText={getHelperText("password")}
+        />
+      </div>
 
-      <LoginButton
-        onClick={() => {}}
-        isLoading={isLoading}
-        disabled={!formData.email || !formData.password}
-      />
-      <SignUpButton onClick={() => {}} />
+      <div className={styles.buttonsContainer}>
+        <LoginButton
+          onClick={() => {}}
+          isLoading={isLoading}
+          disabled={!formData.email || !formData.password}
+        />
+        <SignUpButton onClick={() => {}} />
+      </div>
     </form>
   );
 };

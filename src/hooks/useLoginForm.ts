@@ -58,7 +58,7 @@ export const useLoginForm = () => {
             message: "Senha deve ter pelo menos 8 caracteres",
           };
         }
-        return { isValid: true, message: "Senha válida" };
+        return { isValid: true, message: "" };
       }
 
       return { isValid: true, message: "" };

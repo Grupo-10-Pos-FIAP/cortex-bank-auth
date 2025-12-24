@@ -37,3 +37,13 @@ declare module "*.svg" {
   const src: string;
   export default src;
 }
+
+declare module '*.module.css' {
+  const styles: { [key: string]: string };
+  export default styles;
+}
+
+declare module "*.scss" {
+  const content: string;
+  export default content;
+}
