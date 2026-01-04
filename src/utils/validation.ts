@@ -7,7 +7,7 @@ import type {
 
 export const validateEmail = (
   email: string
-): { isValid: boolean; message: string } => {
+): { isValid: boolean; message?: string } => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!email) {
@@ -18,20 +18,12 @@ export const validateEmail = (
     return { isValid: false, message: "Email inválido" };
   }
 
-  const isAvailable = !["teste@exemplo.com", "admin@exemplo.com"].includes(
-    email
-  );
-
-  if (!isAvailable) {
-    return { isValid: false, message: "Email já está em uso" };
-  }
-
-  return { isValid: true, message: "Email válido" };
+  return { isValid: true };
 };
 
 export const validatePassword = (
   password: string
-): { isValid: boolean; message: string } => {
+): { isValid: boolean; message?: string } => {
   if (!password) {
     return { isValid: false, message: "Senha é obrigatória" };
   }
@@ -43,7 +35,7 @@ export const validatePassword = (
     };
   }
 
-  return { isValid: true, message: "Senha válida" };
+  return { isValid: true };
 };
 
 export const validateForm = (formData: LoginFormData): ValidationResult => {

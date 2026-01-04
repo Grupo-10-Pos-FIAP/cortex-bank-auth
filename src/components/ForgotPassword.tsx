@@ -12,7 +12,6 @@ const ForgotPassword: React.FC = () => {
       }}
     >
       <Text variant="caption" color="white" align="right">
-        {" "}
         Esqueceu a senha?
       </Text>
     </a>

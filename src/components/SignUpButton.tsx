@@ -9,7 +9,7 @@ const SignUpButton: React.FC<SignUpButtonProps> = ({
   onClick,
 }) => {
   return (
-    <Button onClick={onClick} variant="negative" width="100%">
+    <Button onClick={onClick} type="button"  variant="negative" width="100%">
       Criar conta
     </Button>
   );

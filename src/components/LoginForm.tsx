@@ -9,34 +9,17 @@ import ForgotPassword from "./ForgotPassword";
 
 const LoginForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { formData, errors, status, handleChange, handleBlur, handleSubmit } =
+  const { formData, status, handleChange, handleBlur, handleSubmit } =
     useLoginForm();
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-
-    Promise.resolve()
-      .then(() => handleSubmit(e))
-      .then((result: any) => {
-        if (result && result.success) {
-          alert("Login realizado com sucesso!");
-        }
-      })
-      .catch((error: any) => {
-        console.error("Erro no login:", error);
-        alert("Erro ao realizar login. Tente novamente.");
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
-  const getHelperText = (field: "email" | "password") => {
-    if (status[field] === "success") {
-      return field === "email" ? "Email válido" : "Senha válida";
+    try {
+      await handleSubmit(e);
+    } finally {
+      setIsLoading(false);
     }
-    return errors[field];
   };
 
   return (
@@ -47,7 +30,6 @@ const LoginForm: React.FC = () => {
           onChange={handleChange("email")}
           onBlur={handleBlur("email")}
           status={status.email}
-          helperText={getHelperText("email")}
         />
       </div>
 
@@ -57,7 +39,6 @@ const LoginForm: React.FC = () => {
           onChange={handleChange("password")}
           onBlur={handleBlur("password")}
           status={status.password}
-          helperText={getHelperText("password")}
         />
         <ForgotPassword />
       </div>
@@ -66,7 +47,6 @@ const LoginForm: React.FC = () => {
         <LoginButton
           onClick={() => {}}
           isLoading={isLoading}
-          disabled={!formData.email || !formData.password}
         />
         <SignUpButton
           onClick={() => {

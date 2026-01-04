@@ -18,11 +18,11 @@
   "devDependencies": {
     "@babel/core": "^7.23.3",
     "@babel/eslint-parser": "^7.23.3",
-    "@babel/plugin-transform-runtime": "^7.23.3",
+    "@babel/plugin-transform-runtime": "^7.28.5",
     "@babel/preset-env": "^7.23.3",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
-    "@babel/runtime": "^7.23.3",
+    "@babel/runtime": "^7.28.4",
     "@testing-library/jest-dom": "^6.6.3",
     "@types/jest": "^27.0.1",
     "@types/node": "^24.10.1",
@@ -63,8 +63,10 @@
   },
   "dependencies": {
     "@grupo10-pos-fiap/design-system": "^1.0.7",
+    "json-server": "^0.17.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "regenerator-runtime": "^0.14.1",
     "single-spa": "^5.9.3",
     "single-spa-react": "^6.0.2"
   },

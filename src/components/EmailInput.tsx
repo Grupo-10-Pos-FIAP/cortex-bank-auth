@@ -7,7 +7,6 @@ interface EmailInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: () => void;
   status: InputStatus;
-  helperText: string;
 }
 
 const EmailInput: React.FC<EmailInputProps> = ({
@@ -15,7 +14,6 @@ const EmailInput: React.FC<EmailInputProps> = ({
   onChange,
   onBlur,
   status,
-  helperText,
 }) => {
   return (
     <Input
@@ -26,7 +24,6 @@ const EmailInput: React.FC<EmailInputProps> = ({
       onChange={onChange}
       onBlur={onBlur}
       status={status}
-      helperText={helperText}
       leadingIcon="Mail"
       colorMode="white"
       required

@@ -1,6 +1,11 @@
 import { useState, useCallback } from "react";
 import type { LoginFormData, LoginFormErrors, LoginFormStatus } from "../types";
-import { validateForm } from "../utils/validation";
+import {
+  validateForm,
+  validateEmail,
+  validatePassword,
+} from "../utils/validation";
+import { loginUser } from "../utils/authService";
 
 export const useLoginForm = () => {
   const [formData, setFormData] = useState<LoginFormData>({
@@ -38,29 +43,13 @@ export const useLoginForm = () => {
   const validateField = useCallback(
     (field: keyof LoginFormData, value: string) => {
       if (field === "email") {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!value) {
-          return { isValid: false, message: "Email é obrigatório" };
-        }
-        if (!emailRegex.test(value)) {
-          return { isValid: false, message: "Email inválido" };
-        }
-        return { isValid: true, message: "Email válido" };
+        const result = validateEmail(value);
+        return { isValid: result.isValid, message: result.message };
       }
-
       if (field === "password") {
-        if (!value) {
-          return { isValid: false, message: "Senha é obrigatória" };
-        }
-        if (value.length < 8) {
-          return {
-            isValid: false,
-            message: "Senha deve ter pelo menos 8 caracteres",
-          };
-        }
-        return { isValid: true, message: "" };
+        const result = validatePassword(value);
+        return { isValid: result.isValid, message: result.message };
       }
-
       return { isValid: true, message: "" };
     },
     []
@@ -85,20 +74,35 @@ export const useLoginForm = () => {
   );
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
+    async (e: React.FormEvent) => {
       e.preventDefault();
-      const validation = validateForm(formData);
 
+      const validation = validateForm(formData);
       setErrors(validation.errors);
       setStatus(validation.status);
 
-      if (validation.isValid) {
-        console.log("Login realizado:", formData);
-        // Aqui você pode chamar uma API de login
-        return { success: true, data: formData };
+      if (!validation.isValid) {
+        return { success: false, errors: validation.errors };
       }
 
-      return { success: false, errors: validation.errors };
+      try {
+        const result = await loginUser(formData.email, formData.password);
+        window.location.href = "/dashboard";
+        return { success: true, data: result };
+      } catch (error) {
+        console.error("Login error:", error);
+        setErrors((prev) => ({
+          ...prev,
+        }));
+        setStatus((prev) => ({
+          ...prev,
+          email: "error",
+        }));
+        alert("Email ou senha incorretos. Tente novamente.");
+        return {
+          success: false,
+        };
+      }
     },
     [formData]
   );
