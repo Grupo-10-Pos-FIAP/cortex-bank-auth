@@ -38,6 +38,7 @@
     "concurrently": "^6.2.1",
     "cross-env": "^7.0.3",
     "css-loader": "^7.1.2",
+    "dotenv-webpack": "^8.1.1",
     "eslint": "^9.39.1",
     "eslint-config-ts-react-important-stuff": "^3.0.0",
     "eslint-plugin-react": "^7.37.5",
