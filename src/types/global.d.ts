@@ -38,7 +38,7 @@ declare module "*.svg" {
   export default src;
 }
 
-declare module '*.module.css' {
+declare module "*.module.css" {
   const styles: { [key: string]: string };
   export default styles;
 }
@@ -46,4 +46,11 @@ declare module '*.module.css' {
 declare module "*.scss" {
   const content: string;
   export default content;
+}
+
+declare namespace NodeJS {
+  interface ProcessEnv {
+    REACT_APP_API_URL?: string;
+    REACT_APP_REDIRECT_URL?: string;
+  }
 }
