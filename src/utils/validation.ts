@@ -3,19 +3,18 @@ import type {
   LoginFormErrors,
   LoginFormStatus,
   ValidationResult,
-} from "../types";
+} from "../types/loginFormTypes";
 
 export const validateEmail = (
   email: string
 ): { isValid: boolean; message?: string } => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!email) {
-    return { isValid: false, message: "Email é obrigatório" };
-  }
-
-  if (!emailRegex.test(email)) {
-    return { isValid: false, message: "Email inválido" };
+  if (!email || !emailRegex.test(email)) {
+    return {
+      isValid: false,
+      message: "Dados inválidos, verifique suas credenciais e tente novamente",
+    };
   }
 
   return { isValid: true };
@@ -24,14 +23,10 @@ export const validateEmail = (
 export const validatePassword = (
   password: string
 ): { isValid: boolean; message?: string } => {
-  if (!password) {
-    return { isValid: false, message: "Senha é obrigatória" };
-  }
-
-  if (password.length < 8) {
+  if (!password || password.length < 8) {
     return {
       isValid: false,
-      message: "Senha deve ter pelo menos 8 caracteres",
+      message: "Dados inválidos, verifique suas credenciais e tente novamente",
     };
   }
 
