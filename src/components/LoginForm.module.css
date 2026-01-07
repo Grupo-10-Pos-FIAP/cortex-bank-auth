@@ -27,3 +27,26 @@
   gap: 1rem;
   margin-top: 1rem;
 }
+
+.passwordRecoveryInfo {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: white;
+}
+
+.passwordRecoveryInfo p {
+  margin: 0;
+}
+
+.passwordRecoveryInfo a {
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.passwordRecoveryInfo a:hover {
+  text-decoration: underline;
+}
