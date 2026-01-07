@@ -43,11 +43,6 @@ declare module "*.module.css" {
   export default styles;
 }
 
-declare module "*.scss" {
-  const content: string;
-  export default content;
-}
-
 declare namespace NodeJS {
   interface ProcessEnv {
     REACT_APP_API_URL?: string;
