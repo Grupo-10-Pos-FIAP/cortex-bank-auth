@@ -1,11 +1,15 @@
 import { useState, useCallback } from "react";
-import type { LoginFormData, LoginFormErrors, LoginFormStatus } from "../types";
+import type {
+  LoginFormData,
+  LoginFormErrors,
+  LoginFormStatus,
+} from "../types/loginFormTypes";
 import {
   validateForm,
   validateEmail,
   validatePassword,
 } from "../utils/validation";
-import { loginUser } from "../utils/authService";
+import { loginUser } from "../services/authService";
 
 export const useLoginForm = () => {
   const [formData, setFormData] = useState<LoginFormData>({

@@ -50,7 +50,9 @@ const LoginForm: React.FC = () => {
         />
         <SignUpButton
           onClick={() => {
-            alert("Página em construção!");
+            alert(
+              "Para criar uma conta entre em contato com nossa equipe, pelo email: cortexbank.contato@gmail.com"
+            );
           }}
         />
       </div>

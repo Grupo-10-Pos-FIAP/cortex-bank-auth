@@ -1,12 +1,13 @@
 import React from "react";
 import { Input } from "@grupo10-pos-fiap/design-system";
-import type { InputStatus } from "../types";
+import type { InputStatus } from "../types/loginFormTypes";
 
 interface EmailInputProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: () => void;
   status: InputStatus;
+  helperText?: string;
 }
 
 const EmailInput: React.FC<EmailInputProps> = ({
@@ -14,6 +15,7 @@ const EmailInput: React.FC<EmailInputProps> = ({
   onChange,
   onBlur,
   status,
+  helperText,
 }) => {
   return (
     <Input
@@ -26,6 +28,7 @@ const EmailInput: React.FC<EmailInputProps> = ({
       status={status}
       leadingIcon="Mail"
       colorMode="white"
+      helperText={helperText}
       required
     />
   );
