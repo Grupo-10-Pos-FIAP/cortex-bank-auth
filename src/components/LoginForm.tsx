@@ -5,7 +5,6 @@ import LoginButton from "./LoginButton";
 import PasswordInput from "./PasswordInput";
 import SignUpButton from "./SignUpButton";
 import styles from "./LoginForm.module.css";
-import ForgotPassword from "./ForgotPassword";
 
 interface LoginFormProps {
   onNavigateToSignUp?: () => void;
@@ -44,7 +43,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onNavigateToSignUp }) => {
           onBlur={handleBlur("password")}
           status={status.password}
         />
-        <ForgotPassword />
       </div>
 
       <div className={styles.buttonsContainer}>
@@ -57,6 +55,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onNavigateToSignUp }) => {
             onNavigateToSignUp?.();
           }}
         />
+      </div>
+
+      <div className={styles.passwordRecoveryInfo}>
+        <p>Não tem ou esqueceu a senha? Entre em contato com nossa equipe, através do email: <a href="mailto:cortexbank.contato@gmail.com">cortexbank.contato@gmail.com</a></p>
       </div>
     </form>
   );

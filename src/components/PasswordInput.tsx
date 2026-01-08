@@ -1,6 +1,6 @@
 import React from "react";
 import { Input } from "@grupo10-pos-fiap/design-system";
-import type { InputStatus } from "../types";
+import type { InputStatus } from "../types/loginFormTypes";
 
 interface PasswordInputProps {
   value: string;
