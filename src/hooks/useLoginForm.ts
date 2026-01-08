@@ -102,7 +102,7 @@ export const useLoginForm = () => {
           ...prev,
           email: "error",
         }));
-        alert("Email ou senha incorretos. Tente novamente.");
+        alert("Dados inválidos, verifique suas credenciais e tente novamente");
         return {
           success: false,
         };
