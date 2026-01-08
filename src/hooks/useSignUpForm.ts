@@ -3,9 +3,9 @@ import type {
   SignUpFormData,
   SignUpFormErrors,
   SignUpFormStatus,
-} from "../types";
+} from "../types/loginFormTypes";
 import { validateEmail, validatePassword } from "../utils/validation";
-import { registerUser } from "../utils/authService";
+import { registerUser } from "../services/authService";
 
 export const useSignUpForm = () => {
   const [formData, setFormData] = useState<SignUpFormData>({
