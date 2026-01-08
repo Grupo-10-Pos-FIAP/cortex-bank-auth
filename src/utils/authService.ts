@@ -49,3 +49,31 @@ export const loginUser = async (email: string, password: string) => {
 
   return { token, message: data.message };
 };
+
+export const registerUser = async (
+  username: string,
+  email: string,
+  password: string
+) => {
+  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
+
+  const response = await fetch(`${API_URL}/user`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      email,
+      password,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.message || "Erro ao criar conta");
+  }
+
+  const data = await response.json();
+  return { message: data.message || "Conta criada com sucesso" };
+};

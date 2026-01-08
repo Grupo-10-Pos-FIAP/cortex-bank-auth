@@ -1,26 +1,30 @@
 import React, { useState } from "react";
-import { useLoginForm } from "../hooks/useLoginForm";
+import { useSignUpForm } from "../hooks/useSignUpForm";
+import NameInput from "./NameInput";
 import EmailInput from "./EmailInput";
 import LoginButton from "./LoginButton";
 import PasswordInput from "./PasswordInput";
-import SignUpButton from "./SignUpButton";
+import ConfirmPasswordInput from "./ConfirmPasswordInput";
 import styles from "./LoginForm.module.css";
-import ForgotPassword from "./ForgotPassword";
 
-interface LoginFormProps {
-  onNavigateToSignUp?: () => void;
+interface SignUpFormProps {
+  onSuccess: () => void;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onNavigateToSignUp }) => {
+const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { formData, status, handleChange, handleBlur, handleSubmit } =
-    useLoginForm();
+    useSignUpForm();
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await handleSubmit(e);
+      const result = await handleSubmit(e);
+      if (result.success) {
+        alert("Conta criada com sucesso!");
+        onSuccess();
+      }
     } finally {
       setIsLoading(false);
     }
@@ -28,6 +32,15 @@ const LoginForm: React.FC<LoginFormProps> = ({ onNavigateToSignUp }) => {
 
   return (
     <form onSubmit={onSubmit} className={styles.container}>
+      <div className={styles.emailInput}>
+        <NameInput
+          value={formData.username}
+          onChange={handleChange("username")}
+          onBlur={handleBlur("username")}
+          status={status.username}
+        />
+      </div>
+
       <div className={styles.emailInput}>
         <EmailInput
           value={formData.email}
@@ -44,22 +57,27 @@ const LoginForm: React.FC<LoginFormProps> = ({ onNavigateToSignUp }) => {
           onBlur={handleBlur("password")}
           status={status.password}
         />
-        <ForgotPassword />
+      </div>
+
+      <div className={styles.passwordInput}>
+        <ConfirmPasswordInput
+          value={formData.confirmPassword}
+          onChange={handleChange("confirmPassword")}
+          onBlur={handleBlur("confirmPassword")}
+          status={status.confirmPassword}
+        />
       </div>
 
       <div className={styles.buttonsContainer}>
         <LoginButton
           onClick={() => {}}
           isLoading={isLoading}
-        />
-        <SignUpButton
-          onClick={() => {
-            onNavigateToSignUp?.();
-          }}
-        />
+        >
+          Criar conta
+        </LoginButton>
       </div>
     </form>
   );
 };
 
-export default LoginForm;
+export default SignUpForm;

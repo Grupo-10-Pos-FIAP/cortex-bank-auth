@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import BgImage from "../assets/bg-home.svg";
-import LoginForm from "../components/LoginForm";
-import SignUp from "./SignUp";
-import { Text } from "@grupo10-pos-fiap/design-system";
+import SignUpForm from "../components/SignUpForm";
+import { Text, Button } from "@grupo10-pos-fiap/design-system";
 import styles from "./Login.module.css";
 
-const Login: React.FC = () => {
-  const [showSignUp, setShowSignUp] = useState(false);
+interface SignUpProps {
+  onBackToLogin: () => void;
+}
 
-  if (showSignUp) {
-    return <SignUp onBackToLogin={() => setShowSignUp(false)} />;
-  }
-
+const SignUp: React.FC<SignUpProps> = ({ onBackToLogin }) => {
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginContent}>
@@ -20,7 +17,7 @@ const Login: React.FC = () => {
             CortexBank
           </Text>
           <Text variant="h4" weight="bold" color="white">
-            Acesso para clientes
+            Criar conta
           </Text>
           <div className={styles.textGroup}>
             <Text variant="body" weight="bold" color="white">
@@ -30,7 +27,17 @@ const Login: React.FC = () => {
               up
             </Text>
           </div>
-          <LoginForm onNavigateToSignUp={() => setShowSignUp(true)} />
+          <SignUpForm onSuccess={onBackToLogin} />
+          <div style={{ marginTop: "1rem", width: "100%" }}>
+            <Button
+              onClick={onBackToLogin}
+              type="button"
+              variant="negative"
+              width="100%"
+            >
+              Voltar para login
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -41,4 +48,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default SignUp;

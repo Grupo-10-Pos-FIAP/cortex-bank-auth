@@ -5,12 +5,14 @@ interface LoginButtonProps {
   isLoading?: boolean;
   disabled?: boolean;
   onClick: () => void;
+  children?: React.ReactNode;
 }
 
 const LoginButton: React.FC<LoginButtonProps> = ({
   isLoading = false,
   disabled = false,
   onClick,
+  children,
 }) => {
   return (
     <Button
@@ -19,7 +21,7 @@ const LoginButton: React.FC<LoginButtonProps> = ({
       width="100%"
       disabled={disabled || isLoading}
     >
-      {isLoading ? "Carregando..." : "Entrar"}
+      {isLoading ? "Carregando..." : children || "Entrar"}
     </Button>
   );
 };
