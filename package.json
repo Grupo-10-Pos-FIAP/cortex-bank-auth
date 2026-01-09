@@ -60,7 +60,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@grupo10-pos-fiap/design-system": "^1.0.7",
+    "@grupo10-pos-fiap/design-system": "^1.0.9",
     "json-server": "^0.17.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
