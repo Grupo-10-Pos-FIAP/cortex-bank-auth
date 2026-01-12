@@ -7,6 +7,7 @@ interface ConfirmPasswordInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: () => void;
   status: InputStatus;
+  helperText?: string;
 }
 
 const ConfirmPasswordInput: React.FC<ConfirmPasswordInputProps> = ({
@@ -14,6 +15,7 @@ const ConfirmPasswordInput: React.FC<ConfirmPasswordInputProps> = ({
   onChange,
   onBlur,
   status,
+  helperText,
 }) => {
   return (
     <Input
@@ -28,6 +30,7 @@ const ConfirmPasswordInput: React.FC<ConfirmPasswordInputProps> = ({
       trailingIcon="Eye"
       required
       colorMode="white"
+      helperText={helperText}
     />
   );
 };

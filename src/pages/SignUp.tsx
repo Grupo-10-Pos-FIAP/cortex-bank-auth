@@ -1,7 +1,7 @@
 import React from "react";
 import BgImage from "../assets/bg-home.svg";
 import SignUpForm from "../components/SignUpForm";
-import { Text, Button } from "@grupo10-pos-fiap/design-system";
+import { Text } from "@grupo10-pos-fiap/design-system";
 import styles from "./Login.module.css";
 
 interface SignUpProps {
@@ -27,17 +27,7 @@ const SignUp: React.FC<SignUpProps> = ({ onBackToLogin }) => {
               up
             </Text>
           </div>
-          <SignUpForm onSuccess={onBackToLogin} />
-          <div style={{ marginTop: "1rem", width: "100%" }}>
-            <Button
-              onClick={onBackToLogin}
-              type="button"
-              variant="negative"
-              width="100%"
-            >
-              Voltar para login
-            </Button>
-          </div>
+          <SignUpForm onSuccess={onBackToLogin} onBackToLogin={onBackToLogin} />
         </div>
       </div>
 

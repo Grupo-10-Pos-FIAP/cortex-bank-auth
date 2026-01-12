@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "@grupo10-pos-fiap/design-system";
 import { useSignUpForm } from "../hooks/useSignUpForm";
 import NameInput from "./NameInput";
 import EmailInput from "./EmailInput";
@@ -9,11 +10,15 @@ import styles from "./LoginForm.module.css";
 
 interface SignUpFormProps {
   onSuccess: () => void;
+  onBackToLogin: () => void;
 }
 
-const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
+const SignUpForm: React.FC<SignUpFormProps> = ({
+  onSuccess,
+  onBackToLogin,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { formData, status, handleChange, handleBlur, handleSubmit } =
+  const { formData, status, errors, handleChange, handleBlur, handleSubmit } =
     useSignUpForm();
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -38,6 +43,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
           onChange={handleChange("username")}
           onBlur={handleBlur("username")}
           status={status.username}
+          helperText={errors.username || ""}
         />
       </div>
 
@@ -47,6 +53,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
           onChange={handleChange("email")}
           onBlur={handleBlur("email")}
           status={status.email}
+          helperText={errors.email || ""}
         />
       </div>
 
@@ -56,6 +63,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
           onChange={handleChange("password")}
           onBlur={handleBlur("password")}
           status={status.password}
+          helperText={errors.password || ""}
         />
       </div>
 
@@ -65,16 +73,22 @@ const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess }) => {
           onChange={handleChange("confirmPassword")}
           onBlur={handleBlur("confirmPassword")}
           status={status.confirmPassword}
+          helperText={errors.confirmPassword || ""}
         />
       </div>
 
       <div className={styles.buttonsContainer}>
-        <LoginButton
-          onClick={() => {}}
-          isLoading={isLoading}
-        >
+        <LoginButton onClick={() => {}} isLoading={isLoading}>
           Criar conta
         </LoginButton>
+        <Button
+          onClick={onBackToLogin}
+          type="button"
+          variant="negative"
+          width="100%"
+        >
+          Voltar para login
+        </Button>
       </div>
     </form>
   );

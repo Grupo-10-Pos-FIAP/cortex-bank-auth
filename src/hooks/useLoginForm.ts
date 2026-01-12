@@ -5,7 +5,7 @@ import type {
   LoginFormStatus,
 } from "../types/loginFormTypes";
 import {
-  validateForm,
+  validateLoginForm,
   validateEmail,
   validatePassword,
 } from "../utils/validation";
@@ -81,7 +81,7 @@ export const useLoginForm = () => {
     async (e: React.FormEvent) => {
       e.preventDefault();
 
-      const validation = validateForm(formData);
+      const validation = validateLoginForm(formData);
       setErrors(validation.errors);
       setStatus(validation.status);
 

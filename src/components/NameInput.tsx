@@ -7,6 +7,7 @@ interface NameInputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur: () => void;
   status: InputStatus;
+  helperText?: string;
 }
 
 const NameInput: React.FC<NameInputProps> = ({
@@ -14,6 +15,7 @@ const NameInput: React.FC<NameInputProps> = ({
   onChange,
   onBlur,
   status,
+  helperText,
 }) => {
   return (
     <Input
@@ -26,6 +28,7 @@ const NameInput: React.FC<NameInputProps> = ({
       status={status}
       leadingIcon="User"
       colorMode="white"
+      helperText={helperText}
       required
     />
   );

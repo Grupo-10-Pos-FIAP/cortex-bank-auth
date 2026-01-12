@@ -4,7 +4,13 @@ import type {
   SignUpFormErrors,
   SignUpFormStatus,
 } from "../types/loginFormTypes";
-import { validateEmail, validatePassword } from "../utils/validation";
+import {
+  validateEmail,
+  validatePassword,
+  validateUsername,
+  validateConfirmPassword,
+  validateSignUpForm,
+} from "../utils/validation";
 import { registerUser } from "../services/authService";
 
 export const useSignUpForm = () => {
@@ -47,18 +53,10 @@ export const useSignUpForm = () => {
   );
 
   const validateField = useCallback(
-    (field: keyof SignUpFormData, value: string, password?: string) => {
+    (field: keyof SignUpFormData, value: string) => {
       if (field === "username") {
-        if (!value) {
-          return { isValid: false, message: "Nome é obrigatório" };
-        }
-        if (value.length < 3) {
-          return {
-            isValid: false,
-            message: "Nome deve ter pelo menos 3 caracteres",
-          };
-        }
-        return { isValid: true, message: "" };
+        const result = validateUsername(value);
+        return { isValid: result.isValid, message: result.message || "" };
       }
       if (field === "email") {
         const result = validateEmail(value);
@@ -69,30 +67,18 @@ export const useSignUpForm = () => {
         return { isValid: result.isValid, message: result.message || "" };
       }
       if (field === "confirmPassword") {
-        if (!value) {
-          return { isValid: false, message: "Confirmação de senha é obrigatória" };
-        }
-        if (password && value !== password) {
-          return {
-            isValid: false,
-            message: "As senhas não coincidem",
-          };
-        }
-        return { isValid: true, message: "" };
+        const result = validateConfirmPassword(value, formData.password);
+        return { isValid: result.isValid, message: result.message || "" };
       }
       return { isValid: true, message: "" };
     },
-    []
+    [formData.password]
   );
 
   const handleBlur = useCallback(
     (field: keyof SignUpFormData) => () => {
       const value = formData[field];
-      const validation = validateField(
-        field,
-        value,
-        field === "confirmPassword" ? formData.password : undefined
-      );
+      const validation = validateField(field, value);
 
       setErrors((prev) => ({
         ...prev,
@@ -101,7 +87,7 @@ export const useSignUpForm = () => {
 
       setStatus((prev) => ({
         ...prev,
-        [field]: validation.isValid ? "success" : "error",
+        [field]: validation.isValid ? "neutral" : "error",
       }));
     },
     [formData, validateField]
@@ -111,43 +97,12 @@ export const useSignUpForm = () => {
     async (e: React.FormEvent) => {
       e.preventDefault();
 
-      // Valida todos os campos
-      const usernameValidation = validateField("username", formData.username);
-      const emailValidation = validateEmail(formData.email);
-      const passwordValidation = validatePassword(formData.password);
-      const confirmPasswordValidation = validateField(
-        "confirmPassword",
-        formData.confirmPassword,
-        formData.password
-      );
+      const validation = validateSignUpForm(formData);
+      setErrors(validation.errors);
+      setStatus(validation.status);
 
-      const validationErrors: SignUpFormErrors = {
-        username: usernameValidation.isValid ? "" : usernameValidation.message || "",
-        email: emailValidation.isValid ? "" : emailValidation.message || "",
-        password: passwordValidation.isValid ? "" : passwordValidation.message || "",
-        confirmPassword: confirmPasswordValidation.isValid
-          ? ""
-          : confirmPasswordValidation.message || "",
-      };
-
-      const validationStatus: SignUpFormStatus = {
-        username: usernameValidation.isValid ? "success" : "error",
-        email: emailValidation.isValid ? "success" : "error",
-        password: passwordValidation.isValid ? "success" : "error",
-        confirmPassword: confirmPasswordValidation.isValid ? "success" : "error",
-      };
-
-      setErrors(validationErrors);
-      setStatus(validationStatus);
-
-      const isValid =
-        usernameValidation.isValid &&
-        emailValidation.isValid &&
-        passwordValidation.isValid &&
-        confirmPasswordValidation.isValid;
-
-      if (!isValid) {
-        return { success: false, errors: validationErrors };
+      if (!validation.isValid) {
+        return { success: false, errors: validation.errors };
       }
 
       try {
