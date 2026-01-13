@@ -36,58 +36,31 @@ export const useLoginForm = () => {
           [field]: value,
         }));
 
-        // Limpa erro ao começar a digitar
-        if (errors[field]) {
-          setErrors((prev) => ({ ...prev, [field]: "" }));
+        // Limpa erros de ambos os campos ao começar a digitar
+        if (errors.email || errors.password) {
+          setErrors({
+            email: "",
+            password: "",
+          });
+          setStatus({
+            email: "neutral",
+            password: "neutral",
+          });
         }
       },
     [errors]
   );
 
-  const validateField = useCallback(
-    (field: keyof LoginFormData, value: string) => {
-      if (field === "email") {
-        const result = validateEmail(value);
-        return { isValid: result.isValid, message: result.message };
-      }
-      if (field === "password") {
-        const result = validatePassword(value);
-        return { isValid: result.isValid, message: result.message };
-      }
-      return { isValid: true, message: "" };
-    },
-    []
-  );
-
   const handleBlur = useCallback(
     (field: keyof LoginFormData) => () => {
-      const value = formData[field];
-      const validation = validateField(field, value);
-
-      setErrors((prev) => ({
-        ...prev,
-        [field]: validation.isValid ? "" : validation.message,
-      }));
-
-      setStatus((prev) => ({
-        ...prev,
-        [field]: validation.isValid ? "success" : "error",
-      }));
+      // Não faz validação no blur
     },
-    [formData, validateField]
+    []
   );
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
       e.preventDefault();
-
-      const validation = validateLoginForm(formData);
-      setErrors(validation.errors);
-      setStatus(validation.status);
-
-      if (!validation.isValid) {
-        return { success: false, errors: validation.errors };
-      }
 
       try {
         const result = await loginUser(formData.email, formData.password);
@@ -95,13 +68,14 @@ export const useLoginForm = () => {
         return { success: true, data: result };
       } catch (error) {
         console.error("Login error:", error);
-        setErrors((prev) => ({
-          ...prev,
-        }));
-        setStatus((prev) => ({
-          ...prev,
+        setErrors({
+          email: "Email ou senha inválidos",
+          password: "Email ou senha inválidos",
+        });
+        setStatus({
           email: "error",
-        }));
+          password: "error",
+        });
         alert("Dados inválidos, verifique suas credenciais e tente novamente");
         return {
           success: false,
