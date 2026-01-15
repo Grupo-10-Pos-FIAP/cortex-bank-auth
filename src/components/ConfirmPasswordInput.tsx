@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "@grupo10-pos-fiap/design-system";
 import type { InputStatus } from "../types/loginFormTypes";
 
@@ -17,17 +17,24 @@ const ConfirmPasswordInput: React.FC<ConfirmPasswordInputProps> = ({
   status,
   helperText,
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   return (
     <Input
       label="Confirmar Senha"
-      type="password"
+      type={showPassword ? "text" : "password"}
       placeholder="Confirme sua senha"
       value={value}
       onChange={onChange}
       onBlur={onBlur}
       status={status}
       leadingIcon="Lock"
-      trailingIcon="Eye"
+      trailingIcon={showPassword ? "EyeOff" : "Eye"}
+      trailingIconOnClick={handleTogglePassword}
       required
       colorMode="white"
       helperText={helperText}
