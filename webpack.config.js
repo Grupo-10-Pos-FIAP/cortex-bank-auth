@@ -4,7 +4,6 @@ const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 const fs = require("fs");
 const path = require("path");
 
-// Carregar .env manualmente antes do singleSpaDefaults
 const envPath = path.resolve(__dirname, ".env");
 if (fs.existsSync(envPath)) {
   const envFile = fs.readFileSync(envPath, "utf8");
@@ -30,7 +29,6 @@ module.exports = (webpackConfigEnv, argv) => {
 
   return mergeWithCustomize({
     customizeArray: customizeArray({
-      // Substitui DefinePlugin existente ao invés de adicionar um novo
       plugins: (basePlugins, newPlugins) => {
         const filteredBasePlugins = basePlugins.filter(
           (plugin) => !(plugin instanceof webpack.DefinePlugin)

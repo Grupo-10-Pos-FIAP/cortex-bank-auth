@@ -36,7 +36,6 @@ export const useLoginForm = () => {
           [field]: value,
         }));
 
-        // Limpa erros de ambos os campos ao começar a digitar
         if (errors.email || errors.password) {
           setErrors({
             email: "",
@@ -52,9 +51,7 @@ export const useLoginForm = () => {
   );
 
   const handleBlur = useCallback(
-    (field: keyof LoginFormData) => () => {
-      // Não faz validação no blur
-    },
+    (field: keyof LoginFormData) => () => {},
     []
   );
 

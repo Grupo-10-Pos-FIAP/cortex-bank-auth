@@ -44,7 +44,6 @@ export const useSignUpForm = () => {
           [field]: value,
         }));
 
-        // Limpa erro ao começar a digitar
         if (errors[field]) {
           setErrors((prev) => ({ ...prev, [field]: "" }));
         }
