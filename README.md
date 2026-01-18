@@ -23,7 +23,6 @@ Este microfrontend foi desenvolvido seguindo os princípios de **Micro Frontends
 - **Webpack 5** - Bundler e ferramenta de build
 - **CSS Modules** - Estilização com escopo local
 - **Design System** - `@grupo10-pos-fiap/design-system` para componentes reutilizáveis
-- **Jest** - Framework de testes
 - **ESLint & Prettier** - Ferramentas de qualidade de código
 
 ## 📁 Estrutura do Projeto
@@ -157,30 +156,17 @@ npm run format
 npm run check-format
 ```
 
-### Testes
-
-```bash
-# Executa os testes
-npm test
-
-# Executa os testes em modo watch
-npm run watch-tests
-
-# Gera relatório de cobertura
-npm run coverage
-```
-
 ## 🔌 Integração como Microfrontend
 
 ### Modo Standalone
 
-Para testar o microfrontend de forma isolada, utilize:
+Para executar o microfrontend de forma isolada, utilize:
 
 ```bash
 npm run start:standalone
 ```
 
-Isso iniciará a aplicação em modo standalone, permitindo desenvolvimento e testes independentes.
+Isso iniciará a aplicação em modo standalone, permitindo desenvolvimento independente.
 
 ### Modo Integrado
 
@@ -221,16 +207,6 @@ O microfrontend exporta os seguintes lifecycle hooks do Single-SPA:
 - **Senha**: Mínimo de 8 caracteres
 - **Nome**: Mínimo de 3 caracteres
 - **Confirmação de Senha**: Deve coincidir com a senha
-
-## 🧪 Testes
-
-O projeto utiliza Jest e React Testing Library para testes. Os testes estão organizados seguindo as melhores práticas:
-
-- Testes unitários para funções utilitárias
-- Testes de componentes React
-- Testes de hooks customizados
-
-Execute `npm test` para rodar a suíte de testes.
 
 ## 🐳 Docker
 
@@ -321,7 +297,6 @@ Este projeto segue requisitos de segurança estabelecidos para aplicações em p
 
 - `typescript`: Tipagem estática
 - `webpack` e plugins: Build e bundling
-- `jest` e `@testing-library/jest-dom`: Testes
 - `eslint` e `prettier`: Qualidade de código
 
 ## 🤝 Contribuindo
@@ -329,9 +304,8 @@ Este projeto segue requisitos de segurança estabelecidos para aplicações em p
 Este é um projeto acadêmico desenvolvido como parte do trabalho de pós-graduação. Para contribuições:
 
 1. Siga os padrões de código estabelecidos
-2. Execute os testes antes de fazer commit
-3. Mantenha a cobertura de testes
-4. Siga as convenções de commit do projeto
+2. Execute o linter antes de fazer commit (`npm run lint`)
+3. Siga as convenções de commit do projeto
 
 ## 📝 Licença
 
