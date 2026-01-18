@@ -2,7 +2,30 @@ const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 const REDIRECT_URL =
   process.env.REACT_APP_REDIRECT_URL || "http://localhost:3000/dashboard";
 
-export const loginUser = async (email: string, password: string) => {
+interface LoginResponse {
+  result?: {
+    token: string;
+  };
+  message?: string;
+}
+
+interface RegisterResponse {
+  message?: string;
+}
+
+interface LoginResult {
+  token: string;
+  message?: string;
+}
+
+interface RegisterResult {
+  message: string;
+}
+
+export const loginUser = async (
+  email: string,
+  password: string
+): Promise<LoginResult> => {
   const response = await fetch(`${API_URL}/user/auth`, {
     method: "POST",
     headers: {
@@ -18,7 +41,7 @@ export const loginUser = async (email: string, password: string) => {
     throw new Error("Login failed");
   }
 
-  const data = await response.json();
+  const data: LoginResponse = await response.json();
 
   if (!data.result || !data.result.token) {
     throw new Error("Login failed: Invalid response");
@@ -35,9 +58,7 @@ export const registerUser = async (
   username: string,
   email: string,
   password: string
-) => {
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8080";
-
+): Promise<RegisterResult> => {
   const response = await fetch(`${API_URL}/user`, {
     method: "POST",
     headers: {
@@ -51,10 +72,10 @@ export const registerUser = async (
   });
 
   if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
+    const errorData: { message?: string } = await response.json().catch(() => ({}));
     throw new Error(errorData.message || "Erro ao criar conta");
   }
 
-  const data = await response.json();
+  const data: RegisterResponse = await response.json();
   return { message: data.message || "Conta criada com sucesso" };
 };

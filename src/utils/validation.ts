@@ -1,4 +1,5 @@
 import type {
+  FieldValidationResult,
   LoginFormData,
   LoginFormErrors,
   LoginFormStatus,
@@ -8,11 +9,6 @@ import type {
   SignUpValidationResult,
   ValidationResult,
 } from "../types/loginFormTypes";
-
-interface FieldValidationResult {
-  isValid: boolean;
-  message?: string;
-}
 
 export const validateEmail = (email: string): FieldValidationResult => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

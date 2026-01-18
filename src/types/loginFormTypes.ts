@@ -1,5 +1,10 @@
 export type InputStatus = "neutral" | "success" | "error";
 
+export interface FieldValidationResult {
+  isValid: boolean;
+  message?: string;
+}
+
 export interface LoginFormData {
   email: string;
   password: string;
