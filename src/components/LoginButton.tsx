@@ -4,7 +4,7 @@ import { Button } from "@grupo10-pos-fiap/design-system";
 interface LoginButtonProps {
   isLoading?: boolean;
   disabled?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   children?: React.ReactNode;
 }
 

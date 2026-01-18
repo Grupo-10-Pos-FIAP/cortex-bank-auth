@@ -47,7 +47,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ onNavigateToSignUp }) => {
 
       <div className={styles.buttonsContainer}>
         <LoginButton
-          onClick={() => {}}
           isLoading={isLoading}
         />
         <SignUpButton

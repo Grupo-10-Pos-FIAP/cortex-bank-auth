@@ -4,11 +4,6 @@ import type {
   LoginFormErrors,
   LoginFormStatus,
 } from "../types/loginFormTypes";
-import {
-  validateLoginForm,
-  validateEmail,
-  validatePassword,
-} from "../utils/validation";
 import { loginUser } from "../services/authService";
 
 export const useLoginForm = () => {
@@ -51,7 +46,9 @@ export const useLoginForm = () => {
   );
 
   const handleBlur = useCallback(
-    (field: keyof LoginFormData) => () => {},
+    (_field: keyof LoginFormData) => () => {
+      // No-op: Login form doesn't require blur validation
+    },
     []
   );
 
@@ -61,7 +58,6 @@ export const useLoginForm = () => {
 
       try {
         const result = await loginUser(formData.email, formData.password);
-        window.location.href = "/dashboard";
         return { success: true, data: result };
       } catch (error) {
         console.error("Login error:", error);
