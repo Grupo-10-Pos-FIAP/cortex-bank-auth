@@ -13,12 +13,12 @@ interface RegisterResponse {
   message?: string;
 }
 
-interface LoginResult {
+export interface LoginResult {
   token: string;
   message?: string;
 }
 
-interface RegisterResult {
+export interface RegisterResult {
   message: string;
 }
 
