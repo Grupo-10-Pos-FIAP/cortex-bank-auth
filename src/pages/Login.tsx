@@ -19,9 +19,6 @@ const Login: React.FC = () => {
           <Text variant="h1" weight="bold" color="primary">
             CortexBank
           </Text>
-          <Text variant="h4" weight="bold" color="white">
-            Acesso para clientes
-          </Text>
           <div className={styles.textGroup}>
             <Text variant="body" weight="bold" color="white">
               O futuro das suas finanças merece esse
@@ -30,6 +27,9 @@ const Login: React.FC = () => {
               up
             </Text>
           </div>
+          <Text variant="h4" weight="bold" color="white">
+            Acesso para clientes
+          </Text>
           <LoginForm onNavigateToSignUp={() => setShowSignUp(true)} />
         </div>
       </div>

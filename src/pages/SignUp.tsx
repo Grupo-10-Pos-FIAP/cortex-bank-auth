@@ -16,9 +16,6 @@ const SignUp: React.FC<SignUpProps> = ({ onBackToLogin }) => {
           <Text variant="h1" weight="bold" color="primary">
             CortexBank
           </Text>
-          <Text variant="h4" weight="bold" color="white">
-            Criar conta
-          </Text>
           <div className={styles.textGroup}>
             <Text variant="body" weight="bold" color="white">
               O futuro das suas finanças merece esse
@@ -27,6 +24,9 @@ const SignUp: React.FC<SignUpProps> = ({ onBackToLogin }) => {
               up
             </Text>
           </div>
+          <Text variant="h4" weight="bold" color="white">
+            Criar conta
+          </Text>
           <SignUpForm onSuccess={onBackToLogin} onBackToLogin={onBackToLogin} />
         </div>
       </div>
