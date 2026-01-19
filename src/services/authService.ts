@@ -9,6 +9,28 @@ interface LoginResponse {
   message?: string;
 }
 
+// Função utilitária para decodificar o payload do JWT (sem verificar assinatura)
+const decodeJWT = (token: string): any => {
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+      return null;
+    }
+    // Decodifica o payload (segunda parte do JWT)
+    const payload = parts[1];
+    // Converte de base64url para base64
+    const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+    // Adiciona padding se necessário
+    const padded = base64 + '='.repeat((4 - (base64.length % 4)) % 4);
+    // Decodifica
+    const decoded = atob(padded);
+    return JSON.parse(decoded);
+  } catch (error) {
+    console.error('Erro ao decodificar token:', error);
+    return null;
+  }
+};
+
 interface RegisterResponse {
   message?: string;
 }
@@ -49,6 +71,13 @@ export const loginUser = async (
 
   const token = data.result.token;
   localStorage.setItem("token", token);
+  
+  // Extrair e salvar username do token
+  const decoded = decodeJWT(token);
+  if (decoded?.username) {
+    localStorage.setItem("userName", decoded.username);
+  }
+  
   window.location.href = REDIRECT_URL;
 
   return { token, message: data.message };
@@ -77,5 +106,11 @@ export const registerUser = async (
   }
 
   const data: RegisterResponse = await response.json();
+  
+  // Salvar username no localStorage após registro bem-sucedido
+  if (username) {
+    localStorage.setItem("userName", username);
+  }
+  
   return { message: data.message || "Conta criada com sucesso" };
 };
