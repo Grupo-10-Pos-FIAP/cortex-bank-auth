@@ -6,7 +6,7 @@ import type {
 } from "../types/loginFormTypes";
 import {
   validateEmail,
-  validatePassword,
+  validatePasswordStrong,
   validateUsername,
   validateConfirmPassword,
   validateSignUpForm,
@@ -62,7 +62,7 @@ export const useSignUpForm = () => {
         return { isValid: result.isValid, message: result.message || "" };
       }
       if (field === "password") {
-        const result = validatePassword(value);
+        const result = validatePasswordStrong(value);
         return { isValid: result.isValid, message: result.message || "" };
       }
       if (field === "confirmPassword") {

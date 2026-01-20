@@ -23,11 +23,53 @@ export const validateEmail = (email: string): FieldValidationResult => {
   return { isValid: true };
 };
 
-export const validatePassword = (password: string): FieldValidationResult => {
-  if (!password || password.length < 8) {
+export const validatePasswordLogin = (password: string): FieldValidationResult => {
+  if (!password) {
+    return {
+      isValid: false,
+      message: "A senha é obrigatória",
+    };
+  }
+
+  return { isValid: true };
+};
+
+export const validatePasswordStrong = (password: string): FieldValidationResult => {
+  if (!password) {
+    return {
+      isValid: false,
+      message: "A senha é obrigatória",
+    };
+  }
+
+  if (password.length < 8) {
     return {
       isValid: false,
       message: "A senha deve ter pelo menos 8 caracteres",
+    };
+  }
+
+  const hasLetter = /[a-zA-Z]/.test(password);
+  if (!hasLetter) {
+    return {
+      isValid: false,
+      message: "A senha deve conter pelo menos uma letra",
+    };
+  }
+
+  const hasNumber = /[0-9]/.test(password);
+  if (!hasNumber) {
+    return {
+      isValid: false,
+      message: "A senha deve conter pelo menos um número",
+    };
+  }
+  
+  const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+  if (!hasSpecialChar) {
+    return {
+      isValid: false,
+      message: "A senha deve conter pelo menos um caractere especial",
     };
   }
 
@@ -74,7 +116,7 @@ export const validateLoginForm = (
   formData: LoginFormData
 ): ValidationResult => {
   const emailValidation = validateEmail(formData.email);
-  const passwordValidation = validatePassword(formData.password);
+  const passwordValidation = validatePasswordLogin(formData.password);
 
   const errors: LoginFormErrors = {
     email: emailValidation.isValid ? "" : emailValidation.message || "",
@@ -98,7 +140,7 @@ export const validateSignUpForm = (
 ): SignUpValidationResult => {
   const usernameValidation = validateUsername(formData.username);
   const emailValidation = validateEmail(formData.email);
-  const passwordValidation = validatePassword(formData.password);
+  const passwordValidation = validatePasswordStrong(formData.password);
   const confirmPasswordValidation = validateConfirmPassword(
     formData.confirmPassword,
     formData.password
