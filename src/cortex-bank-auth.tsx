@@ -7,7 +7,7 @@ const lifecycles = singleSpaReact({
   React,
   ReactDOMClient,
   rootComponent: Login,
-  errorBoundary(err, info, props) {
+  errorBoundary(_err, _info, _props) {
     return null;
   },
 });

@@ -1,9 +1,5 @@
 import { useState, useCallback } from "react";
-import type {
-  SignUpFormData,
-  SignUpFormErrors,
-  SignUpFormStatus,
-} from "../types/loginFormTypes";
+import type { SignUpFormData, SignUpFormErrors, SignUpFormStatus } from "../types/loginFormTypes";
 import {
   validateEmail,
   validatePasswordStrong,
@@ -36,18 +32,17 @@ export const useSignUpForm = () => {
   });
 
   const handleChange = useCallback(
-    (field: keyof SignUpFormData) =>
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setFormData((prev) => ({
-          ...prev,
-          [field]: value,
-        }));
+    (field: keyof SignUpFormData) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setFormData((prev) => ({
+        ...prev,
+        [field]: value,
+      }));
 
-        if (errors[field]) {
-          setErrors((prev) => ({ ...prev, [field]: "" }));
-        }
-      },
+      if (errors[field]) {
+        setErrors((prev) => ({ ...prev, [field]: "" }));
+      }
+    },
     [errors]
   );
 
@@ -105,11 +100,7 @@ export const useSignUpForm = () => {
       }
 
       try {
-        await registerUser(
-          formData.username,
-          formData.email,
-          formData.password
-        );
+        await registerUser(formData.username, formData.email, formData.password);
         return { success: true };
       } catch (error) {
         console.error("Sign up error:", error);
@@ -127,7 +118,7 @@ export const useSignUpForm = () => {
         };
       }
     },
-    [formData, validateField]
+    [formData]
   );
 
   return {

@@ -1,6 +1,5 @@
 const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
-const REDIRECT_URL =
-  process.env.REACT_APP_REDIRECT_URL || "http://localhost:3000/dashboard";
+const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL || "http://localhost:3000/dashboard";
 
 interface LoginResponse {
   result?: {
@@ -9,7 +8,14 @@ interface LoginResponse {
   message?: string;
 }
 
-const decodeJWT = (token: string): any => {
+interface JWTPayload {
+  username?: string;
+  exp?: number;
+  iat?: number;
+  [key: string]: unknown;
+}
+
+const decodeJWT = (token: string): JWTPayload | null => {
   try {
     const parts = token.split(".");
     if (parts.length !== 3) {
@@ -39,10 +45,7 @@ export interface RegisterResult {
   message: string;
 }
 
-export const loginUser = async (
-  email: string,
-  password: string
-): Promise<LoginResult> => {
+export const loginUser = async (email: string, password: string): Promise<LoginResult> => {
   const response = await fetch(`${API_URL}/user/auth`, {
     method: "POST",
     headers: {
@@ -74,9 +77,7 @@ export const loginUser = async (
   const data: LoginResponse = await response.json();
 
   if (!data.result || !data.result.token) {
-    throw new Error(
-      data.message || "Resposta inválida do servidor: token não encontrado"
-    );
+    throw new Error(data.message || "Resposta inválida do servidor: token não encontrado");
   }
 
   const token = data.result.token;
@@ -110,9 +111,7 @@ export const registerUser = async (
   });
 
   if (!response.ok) {
-    const errorData: { message?: string } = await response
-      .json()
-      .catch(() => ({}));
+    const errorData: { message?: string } = await response.json().catch(() => ({}));
     throw new Error(errorData.message || "Erro ao criar conta");
   }
 
