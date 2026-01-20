@@ -1,12 +1,14 @@
 {
   "name": "@cortex-bank/auth",
+  "type": "module",
   "scripts": {
     "start": "webpack serve --port 3005",
     "start:standalone": "webpack serve --env standalone",
     "build": "concurrently npm:build:*",
     "build:webpack": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",
-    "lint": "eslint src --ext js,ts,tsx",
+    "lint": "eslint src",
+    "test": "echo \"No tests specified\" && exit 0",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
     "prepare": "husky install",
