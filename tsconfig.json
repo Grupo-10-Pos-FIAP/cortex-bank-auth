@@ -8,6 +8,5 @@
     "skipLibCheck": true
   },
   "files": ["src/cortex-bank-auth.tsx"],
-  "include": ["src/**/*"],
-  "exclude": ["src/**/*.test*"]
+  "include": ["src/**/*"]
 }

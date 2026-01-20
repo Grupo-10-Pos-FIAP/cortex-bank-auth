@@ -15,7 +15,6 @@ export default [
       "yarn.lock",
       "yarn-error.log",
       "package-lock.json",
-      "coverage",
       "pnpm-lock.yaml",
     ],
   },
