@@ -1,10 +1,10 @@
 # Cortex Bank - Microfrontend de Autenticação
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
 Este projeto faz parte do trabalho de pós-graduação em Engenharia de Software Frontend e consiste em um **microfrontend de autenticação** para o sistema Cortex Bank. O módulo é responsável por gerenciar o fluxo de login e cadastro de usuários, integrando-se a uma arquitetura de microfrontends utilizando Single-SPA.
 
-## 🏗️ Arquitetura
+## Arquitetura
 
 Este microfrontend foi desenvolvido seguindo os princípios de **Micro Frontends**, utilizando a biblioteca **Single-SPA** para integração com outros módulos da aplicação. A arquitetura permite que este módulo seja desenvolvido, testado e deployado de forma independente, mantendo a capacidade de se integrar perfeitamente com outros microfrontends do sistema.
 
@@ -15,7 +15,7 @@ Este microfrontend foi desenvolvido seguindo os princípios de **Micro Frontends
 - **Reutilização**: Componentes e lógica podem ser compartilhados via design system
 - **Escalabilidade**: Facilita a manutenção e evolução do módulo
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **React 19.2.0** - Biblioteca JavaScript para construção de interfaces
 - **TypeScript** - Superset do JavaScript com tipagem estática
@@ -25,7 +25,7 @@ Este microfrontend foi desenvolvido seguindo os princípios de **Micro Frontends
 - **Design System** - `@grupo10-pos-fiap/design-system` para componentes reutilizáveis
 - **ESLint & Prettier** - Ferramentas de qualidade de código
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 auth/
@@ -56,12 +56,11 @@ auth/
 └── Dockerfile              # Configuração Docker
 ```
 
-## 🚀 Instalação
+## Instalação
 
 ### Pré-requisitos
 
 - Node.js (versão 22 ou superior)
-- npm ou yarn
 
 ### Passos para Instalação
 
@@ -84,7 +83,7 @@ REACT_APP_REDIRECT_URL=http://localhost:3000/dashboard
 
 > **Nota**: O arquivo `.env` é utilizado apenas para desenvolvimento local. Em produção, as variáveis de ambiente são configuradas diretamente na plataforma Vercel por questões de segurança. Veja a seção [Configuração](#-configuração) para mais detalhes.
 
-## ⚙️ Configuração
+## Configuração
 
 ### Variáveis de Ambiente
 
@@ -93,7 +92,7 @@ O projeto utiliza as seguintes variáveis de ambiente:
 - `REACT_APP_API_URL`: URL base da API de autenticação (padrão: `http://localhost:3000`)
 - `REACT_APP_REDIRECT_URL`: URL de redirecionamento após login bem-sucedido (padrão: `http://localhost:3000/dashboard`)
 
-#### ⚠️ Importante: Segurança de Variáveis de Ambiente
+#### Importante: Segurança de Variáveis de Ambiente
 
 **Para desenvolvimento local**, você pode criar um arquivo `.env` na raiz do projeto:
 
@@ -114,11 +113,12 @@ As variáveis de ambiente na Vercel são configuradas através do painel adminis
 ### Configuração do Single-SPA
 
 O microfrontend está configurado para ser registrado no Single-SPA com:
+
 - **Organização**: `cortex-bank`
 - **Nome do Projeto**: `auth`
 - **Porta de Desenvolvimento**: `3005`
 
-## 📜 Scripts Disponíveis
+## Scripts Disponíveis
 
 ### Desenvolvimento
 
@@ -156,7 +156,7 @@ npm run format
 npm run check-format
 ```
 
-## 🔌 Integração como Microfrontend
+## Integração como Microfrontend
 
 ### Modo Standalone
 
@@ -184,7 +184,7 @@ O microfrontend exporta os seguintes lifecycle hooks do Single-SPA:
 - `mount`: Monta o componente React na DOM
 - `unmount`: Remove o componente da DOM
 
-## 🎨 Funcionalidades
+## Funcionalidades
 
 ### Login
 
@@ -208,7 +208,7 @@ O microfrontend exporta os seguintes lifecycle hooks do Single-SPA:
 - **Nome**: Mínimo de 3 caracteres
 - **Confirmação de Senha**: Deve coincidir com a senha
 
-## 🐳 Docker
+## Docker
 
 O projeto inclui um `Dockerfile` para containerização:
 
@@ -220,7 +220,7 @@ docker build -t cortex-bank-auth .
 docker run -p 3005:3005 cortex-bank-auth
 ```
 
-## 📦 Build de Produção
+## Build de Produção
 
 O build de produção gera os arquivos otimizados na pasta `dist/`:
 
@@ -230,7 +230,7 @@ npm run build
 
 Os arquivos gerados podem ser servidos por qualquer servidor web estático ou integrados ao shell application do Single-SPA.
 
-## 🚀 Deploy e Hospedagem
+## Deploy e Hospedagem
 
 ### Vercel
 
@@ -265,7 +265,7 @@ O projeto inclui configuração de headers de segurança no arquivo `vercel.json
 
 Esses headers são aplicados automaticamente em todas as requisições, seguindo as melhores práticas de segurança para aplicações web.
 
-## 🔐 Segurança
+## Segurança
 
 ### Medidas de Segurança Implementadas
 
@@ -285,7 +285,7 @@ Este projeto segue requisitos de segurança estabelecidos para aplicações em p
 3. **Separação de ambientes**: Diferentes valores de variáveis para desenvolvimento e produção
 4. **Proteção contra exposição**: Prevenção de vazamento de informações através de headers de segurança e boas práticas de desenvolvimento
 
-## 📚 Dependências Principais
+## Dependências Principais
 
 ### Produção
 
@@ -299,7 +299,7 @@ Este projeto segue requisitos de segurança estabelecidos para aplicações em p
 - `webpack` e plugins: Build e bundling
 - `eslint` e `prettier`: Qualidade de código
 
-## 🤝 Contribuindo
+## Contribuindo
 
 Este é um projeto acadêmico desenvolvido como parte do trabalho de pós-graduação. Para contribuições:
 
@@ -307,8 +307,11 @@ Este é um projeto acadêmico desenvolvido como parte do trabalho de pós-gradua
 2. Execute o linter antes de fazer commit (`npm run lint`)
 3. Siga as convenções de commit do projeto
 
-## 📝 Licença
+## Licença
 
 Este projeto foi desenvolvido como parte do trabalho de pós-graduação em Engenharia de Software Frontend.
 
----
+## Autores
+
+- [Gabrielle Martins](https://github.com/Gabrielle-96)
+- [Helen Cris](https://github.com/HelenCrisM)
