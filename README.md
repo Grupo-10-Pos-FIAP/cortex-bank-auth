@@ -50,7 +50,7 @@ auth/
 │   │   └── validation.ts
 │   └── cortex-bank-auth.tsx # Entry point do microfrontend
 ├── public/                  # Arquivos públicos
-├── webpack.config.js        # Configuração do Webpack
+├── webpack.config.cjs       # Configuração do Webpack
 ├── tsconfig.json           # Configuração do TypeScript
 ├── package.json            # Dependências e scripts
 └── Dockerfile              # Configuração Docker
