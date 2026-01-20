@@ -65,17 +65,20 @@ auth/
 ### Passos para Instalação
 
 1. Clone o repositório:
+
 ```bash
 git clone <url-do-repositorio>
 cd auth
 ```
 
 2. Instale as dependências:
+
 ```bash
 npm install
 ```
 
 3. Configure as variáveis de ambiente para desenvolvimento local (crie um arquivo `.env` na raiz do projeto):
+
 ```env
 REACT_APP_API_URL=http://localhost:3000
 REACT_APP_REDIRECT_URL=http://localhost:3000/dashboard

@@ -10,13 +10,7 @@ interface EmailInputProps {
   helperText?: string;
 }
 
-const EmailInput: React.FC<EmailInputProps> = ({
-  value,
-  onChange,
-  onBlur,
-  status,
-  helperText,
-}) => {
+const EmailInput: React.FC<EmailInputProps> = ({ value, onChange, onBlur, status, helperText }) => {
   return (
     <Input
       label="Email"

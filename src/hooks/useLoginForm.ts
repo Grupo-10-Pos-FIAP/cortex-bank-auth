@@ -1,9 +1,5 @@
 import { useState, useCallback } from "react";
-import type {
-  LoginFormData,
-  LoginFormErrors,
-  LoginFormStatus,
-} from "../types/loginFormTypes";
+import type { LoginFormData, LoginFormErrors, LoginFormStatus } from "../types/loginFormTypes";
 import { loginUser } from "../services/authService";
 
 export const useLoginForm = () => {
@@ -23,25 +19,24 @@ export const useLoginForm = () => {
   });
 
   const handleChange = useCallback(
-    (field: keyof LoginFormData) =>
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setFormData((prev) => ({
-          ...prev,
-          [field]: value,
-        }));
+    (field: keyof LoginFormData) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setFormData((prev) => ({
+        ...prev,
+        [field]: value,
+      }));
 
-        if (errors.email || errors.password) {
-          setErrors({
-            email: "",
-            password: "",
-          });
-          setStatus({
-            email: "neutral",
-            password: "neutral",
-          });
-        }
-      },
+      if (errors.email || errors.password) {
+        setErrors({
+          email: "",
+          password: "",
+        });
+        setStatus({
+          email: "neutral",
+          password: "neutral",
+        });
+      }
+    },
     [errors]
   );
 

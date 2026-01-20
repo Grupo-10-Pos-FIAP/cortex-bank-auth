@@ -10,13 +10,7 @@ interface NameInputProps {
   helperText?: string;
 }
 
-const NameInput: React.FC<NameInputProps> = ({
-  value,
-  onChange,
-  onBlur,
-  status,
-  helperText,
-}) => {
+const NameInput: React.FC<NameInputProps> = ({ value, onChange, onBlur, status, helperText }) => {
   return (
     <Input
       label="Nome"

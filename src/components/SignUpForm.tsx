@@ -13,13 +13,9 @@ interface SignUpFormProps {
   onBackToLogin: () => void;
 }
 
-const SignUpForm: React.FC<SignUpFormProps> = ({
-  onSuccess,
-  onBackToLogin,
-}) => {
+const SignUpForm: React.FC<SignUpFormProps> = ({ onSuccess, onBackToLogin }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { formData, status, errors, handleChange, handleBlur, handleSubmit } =
-    useSignUpForm();
+  const { formData, status, errors, handleChange, handleBlur, handleSubmit } = useSignUpForm();
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -81,12 +77,7 @@ const SignUpForm: React.FC<SignUpFormProps> = ({
         <LoginButton onClick={() => {}} isLoading={isLoading}>
           Criar conta
         </LoginButton>
-        <Button
-          onClick={onBackToLogin}
-          type="button"
-          variant="negative"
-          width="100%"
-        >
+        <Button onClick={onBackToLogin} type="button" variant="negative" width="100%">
           Voltar para login
         </Button>
       </div>

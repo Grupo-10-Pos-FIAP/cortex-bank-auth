@@ -64,8 +64,8 @@ export const validatePasswordStrong = (password: string): FieldValidationResult 
       message: "A senha deve conter pelo menos um número",
     };
   }
-  
-  const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+
+  const hasSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password);
   if (!hasSpecialChar) {
     return {
       isValid: false,
@@ -112,17 +112,13 @@ export const validateConfirmPassword = (
   return { isValid: true };
 };
 
-export const validateLoginForm = (
-  formData: LoginFormData
-): ValidationResult => {
+export const validateLoginForm = (formData: LoginFormData): ValidationResult => {
   const emailValidation = validateEmail(formData.email);
   const passwordValidation = validatePasswordLogin(formData.password);
 
   const errors: LoginFormErrors = {
     email: emailValidation.isValid ? "" : emailValidation.message || "",
-    password: passwordValidation.isValid
-      ? ""
-      : passwordValidation.message || "",
+    password: passwordValidation.isValid ? "" : passwordValidation.message || "",
   };
 
   const status: LoginFormStatus = {
@@ -135,9 +131,7 @@ export const validateLoginForm = (
   return { isValid, errors, status };
 };
 
-export const validateSignUpForm = (
-  formData: SignUpFormData
-): SignUpValidationResult => {
+export const validateSignUpForm = (formData: SignUpFormData): SignUpValidationResult => {
   const usernameValidation = validateUsername(formData.username);
   const emailValidation = validateEmail(formData.email);
   const passwordValidation = validatePasswordStrong(formData.password);
@@ -147,13 +141,9 @@ export const validateSignUpForm = (
   );
 
   const errors: SignUpFormErrors = {
-    username: usernameValidation.isValid
-      ? ""
-      : usernameValidation.message || "",
+    username: usernameValidation.isValid ? "" : usernameValidation.message || "",
     email: emailValidation.isValid ? "" : emailValidation.message || "",
-    password: passwordValidation.isValid
-      ? ""
-      : passwordValidation.message || "",
+    password: passwordValidation.isValid ? "" : passwordValidation.message || "",
     confirmPassword: confirmPasswordValidation.isValid
       ? ""
       : confirmPasswordValidation.message || "",

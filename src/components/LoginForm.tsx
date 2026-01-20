@@ -12,8 +12,7 @@ interface LoginFormProps {
 
 const LoginForm: React.FC<LoginFormProps> = ({ onNavigateToSignUp }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { formData, status, handleChange, handleBlur, handleSubmit } =
-    useLoginForm();
+  const { formData, status, handleChange, handleBlur, handleSubmit } = useLoginForm();
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,9 +45,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onNavigateToSignUp }) => {
       </div>
 
       <div className={styles.buttonsContainer}>
-        <LoginButton
-          isLoading={isLoading}
-        />
+        <LoginButton isLoading={isLoading} />
         <SignUpButton
           onClick={() => {
             onNavigateToSignUp?.();
@@ -57,7 +54,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onNavigateToSignUp }) => {
       </div>
 
       <div className={styles.passwordRecoveryInfo}>
-        <p>Não tem ou esqueceu a senha? Entre em contato com nossa equipe, através do email: <a href="mailto:cortexbank.contato@gmail.com">cortexbank.contato@gmail.com</a></p>
+        <p>
+          Não tem ou esqueceu a senha? Entre em contato com nossa equipe, através do email:{" "}
+          <a href="mailto:cortexbank.contato@gmail.com">cortexbank.contato@gmail.com</a>
+        </p>
       </div>
     </form>
   );

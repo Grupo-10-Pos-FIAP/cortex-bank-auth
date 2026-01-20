@@ -15,12 +15,7 @@ const LoginButton: React.FC<LoginButtonProps> = ({
   children,
 }) => {
   return (
-    <Button
-      onClick={onClick}
-      variant="primary"
-      width="100%"
-      disabled={disabled || isLoading}
-    >
+    <Button onClick={onClick} variant="primary" width="100%" disabled={disabled || isLoading}>
       {isLoading ? "Carregando..." : children || "Entrar"}
     </Button>
   );

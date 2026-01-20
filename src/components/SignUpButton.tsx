@@ -5,11 +5,9 @@ interface SignUpButtonProps {
   onClick: () => void;
 }
 
-const SignUpButton: React.FC<SignUpButtonProps> = ({
-  onClick,
-}) => {
+const SignUpButton: React.FC<SignUpButtonProps> = ({ onClick }) => {
   return (
-    <Button onClick={onClick} type="button"  variant="negative" width="100%">
+    <Button onClick={onClick} type="button" variant="negative" width="100%">
       Criar conta
     </Button>
   );

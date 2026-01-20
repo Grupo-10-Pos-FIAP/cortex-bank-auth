@@ -6,10 +6,10 @@
   margin-right: auto;
   padding: 1.5rem;
   gap: 0.25rem;
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
-.container>*+* {
+.container > * + * {
   margin-top: 0.5rem;
 }
 
